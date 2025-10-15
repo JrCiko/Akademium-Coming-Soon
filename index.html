@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akademium - Çok Yakında!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, rgba(13, 110, 253, 0.9) 0%, rgba(32, 201, 151, 0.9) 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        .footer {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="hero-section">
+        <div class="container" data-aos="fade-up">
+            <h1 class="display-3 fw-bold">Akademium</h1>
+            <p class="lead my-4 mx-auto" style="max-width: 600px;">
+                Kişiselleştirilmiş öğrenme ve performans takibi için geliştirilen yeni nesil eğitim platformu çok yakında sizlerle.
+            </p>
+            <div id="countdown" class="d-flex justify-content-center gap-4 my-5">
+                <div><h2 id="days" class="display-4 fw-bold">00</h2><small class="text-white-50">Gün</small></div>
+                <div><h2 id="hours" class="display-4 fw-bold">00</h2><small class="text-white-50">Saat</small></div>
+                <div><h2 id="minutes" class="display-4 fw-bold">00</h2><small class="text-white-50">Dakika</small></div>
+                <div><h2 id="seconds" class="display-4 fw-bold">00</h2><small class="text-white-50">Saniye</small></div>
+            </div>
+            <p>Gelişmelerden haberdar olmak için e-posta listemize katılın!</p>
+            <form class="d-flex justify-content-center" onsubmit="event.preventDefault(); alert('Listemize eklendiniz. Teşekkürler!');">
+                <input type="email" class="form-control w-50" placeholder="E-posta adresiniz" required />
+                <button type="submit" class="btn btn-light ms-2">Haberdar Et</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer py-4 text-center">
+        <div class="container">
+            <p class="mb-0 text-muted">
+                <a href="gizlilik.html" class="text-muted mx-2">Gizlilik Politikası</a> |
+                <a href="kullanim.html" class="text-muted mx-2">Kullanım Koşulları</a> |
+                <a href="satis.html" class="text-muted mx-2">Mesafeli Satış Sözleşmesi</a>
+            </p>
+            <p class="mt-2 text-muted"><small>&copy; 2025 Akademium. Tüm Hakları Saklıdır.</small></p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        
+        const countdownDate = new Date().getTime() + (90 * 24 * 60 * 60 * 1000);
+        const interval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+            if (distance < 0) {
+                clearInterval(interval);
+                document.getElementById("countdown").innerHTML = "<h2 class='display-4 fw-bold'>YAYINDAYIZ!</h2>";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
